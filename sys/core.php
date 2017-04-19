@@ -95,5 +95,28 @@ function init(){
 				}
 			}
 	}
+	
+	function check($pdo, $cookie_id, $cookie_hash){
+		
+		if(empty($cookie_id) || empty($cookie_hash)){
+			return 0;
+		} else {
+			$sql = "SELECT hash FROM ts_users WHERE id='$cookie_id'";
+			if(!$stmt = $pdo->query($sql)){
+				return 0;
+			} else {
+				$row = $stmt->fetch(PDO::FETCH_ASSOC);
+				if(!$row){
+					return 0;
+				} else {
+					$db_hash = $row['hash'];
+					if($cookie_hash == $db_hash){
+						return $cookie_id;
+					}
+					return 0;
+				}
+			}
+		}
+	}
 
 

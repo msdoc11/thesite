@@ -10,6 +10,11 @@
 
 	$pdo = init();
 	
+	// Проверка авторизации
+	$cookie_id = $_COOKIE['id'];
+	$cookie_hash = $_COOKIE['hash'];
+	$this_id = check($pdo, $cookie_id, $cookie_hash);
+	
 	switch($page){
 		case 'login':
 			$tpl = 'login';
@@ -63,5 +68,7 @@
 			$title = "Страница по умолчанию";
 			$tpl = "default";
 	}
+	
+	print '<br>'.$this_id;
 
 	include_once(ROOT.'/sys/templates/index.tpl.php');
