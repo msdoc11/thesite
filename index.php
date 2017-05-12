@@ -69,6 +69,6 @@
 			$tpl = "default";
 	}
 	
-	print '<br>'.$this_id;
+	//print '<br>'.$this_id;
 
 	include_once(ROOT.'/sys/templates/index.tpl.php');
